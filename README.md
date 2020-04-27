@@ -1,4 +1,8 @@
-# torg
+# Simple CRM on Vue.js
+
+```
+Demo: http://crm.stabmart.tw1.ru/deals
+```
 
 ## Project setup
 ```
@@ -20,5 +24,3 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
