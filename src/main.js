@@ -22,7 +22,7 @@ Vue.use(wysiwyg, {
 
 import axios from 'axios'
 
-store.state.url_api = process.env.NODE_ENV === 'production' ? 'http://crm.stabmart.tw1.ru/' : 'http://192.168.1.21';
+store.state.url_api = process.env.NODE_ENV === 'production' ? 'http://crm.stabmart.tw1.ru/' : 'http://crm.stabmart.tw1.ru/';
 store.state.dev = process.env.NODE_ENV === 'production' ? false : true;
 axios.defaults.baseURL = store.state.url_api + '/api/v1';
 

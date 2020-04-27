@@ -40,7 +40,33 @@
 <script>
 export default {
   name: "mytext",
-  props: ["store", "row", "id", "title", "comment", "icon", "value"],
+  props: {
+    store: {
+      type: String,
+      required: true
+    },
+    row: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String
+    },
+    comment: {
+      type: Boolean
+    },
+    icon: {
+      type: String
+    },
+    value: {
+      type: String,
+      required: true
+    },
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       loading: false,

@@ -1,4 +1,5 @@
 <template>
+  <!-- меню слева -->
   <div style="position:fixed;top:0px;left:0;">
     <v-card max-width="45">
       <v-list max-width="50" dense link light>

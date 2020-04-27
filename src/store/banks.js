@@ -39,8 +39,8 @@ const actions = {
             if (response.data.error === "Y") {
                 dispatch("message", ["error", "Ошибка 1 recviz saveRow: " + response.data.code + " | " + response.data.message], { root: true });
             }
-            else {             
-                dispatch("message", ["success", "Обновлено"], { root: true });              
+            else {
+                dispatch("message", ["success", "Обновлено"], { root: true });
             }
         })
             .catch(e => {
@@ -57,7 +57,7 @@ const actions = {
                 }
                 else {
                     commit('SET_OURBANKS', response.data);
-             
+
                 }
             })
             .catch(e => {

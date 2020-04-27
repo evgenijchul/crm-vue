@@ -1,4 +1,5 @@
 <template>
+  <!-- форма отправки исзодящего сообщения -->
   <v-bottom-sheet v-model="showMail">
     <v-sheet height="100%">
       <v-row no-gutters>
@@ -89,6 +90,7 @@ export default {
 
   computed: {
     showMail: {
+      // v-model окна
       get() {
         return this.$store.state.showMail;
       },

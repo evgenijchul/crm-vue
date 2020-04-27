@@ -44,9 +44,7 @@ export default {
   padding-right: 0 !important;
 }
 
-.manager-write {
-  /* font-family: "Times New Roman" !important; */
-}
+
 .comment .v-input__slot {
   background: unset !important;
 }

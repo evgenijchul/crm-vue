@@ -41,17 +41,40 @@
 <script>
 export default {
   name: "mytextarea",
-  props: [
-    "store",
-    "row",
-    "title",
-    "comment",
-    "styleInput",
-    "icon",
-    "value",
-    "id",
-    "rowcol"
-  ],
+  
+  props:{
+    store:{
+      type: String,
+      required: true
+    },
+    row:{
+      type: String,
+      required: true
+    },
+    title:{
+      type: String
+    },
+    comment:{
+      type: Boolean
+    },
+    styleInput:{
+      type: String
+    },
+    icon:{
+      type: String
+    },
+    value:{
+      type: String,
+      required: true
+    },
+    id:{
+      type: String,
+      required: true
+    },
+    rowcol:{
+      type: String
+    },
+  },
   data() {
     return {
       editRow: ""

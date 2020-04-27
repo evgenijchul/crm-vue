@@ -80,7 +80,7 @@
               v-for="(a, i) in item.audio_file"
               :key="'audio'+i"
             >
-              <source :src="'http://192.168.1.104'+a.file" type="audio/mp3" />
+              <source :src="''+a.file" type="audio/mp3" />
             </audio>
           </template>
 

@@ -44,12 +44,10 @@
           class="caption"
         >
           {{stage.name}} ({{dealsSlice[stage.name].length}})
-         
           <!-- Для последний двух стадий выведем процент от общего кол-ва Завершенных сделок -->
           <span
             v-if="(stage.id ==7 || stage.id ==8)"
             class="body-2 font-weight-bold"
-
           >{{Math.round( 100*dealsSlice[stage.name].length / (dealsSlice['Выполнено'].length + dealsSlice['Не выполнено'].length) )}}%</span>
         </td>
       </tr>
@@ -115,7 +113,12 @@
 <script>
 export default {
   name: "pipeline",
-  props: ["deals"],
+  props: {
+    deals: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       showFinishStage: false

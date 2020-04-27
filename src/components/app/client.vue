@@ -1,4 +1,5 @@
 <template>
+  <!-- дравлер с карточкой клиента -->
   <v-navigation-drawer
     right
     v-model="showClient"
@@ -18,6 +19,7 @@
         <v-toolbar-title>{{title}}</v-toolbar-title>
 
         <template v-slot:extension>
+          <!-- верхние табы -->
           <v-tabs v-model="tab" color="white" light show-arrows background-color="yellow darken-4">
             <v-tab href="#tab-1" :ripple="false">Основные</v-tab>
             <v-tab v-if="clientId" href="#tab-2" @click="loadRecviz()" :ripple="false">Реквизиты</v-tab>
@@ -32,6 +34,7 @@
       </v-toolbar>
 
       <v-tabs-items touchless v-model="tab">
+        <!-- основные данные -->
         <v-tab-item :transition="false" :reverse-transition="false" :value="'tab-1'">
           <v-card flat>
             <v-card-text>
@@ -295,9 +298,11 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
+        <!-- банки и реквизиты -->
         <v-tab-item :transition="false" :reverse-transition="false" :value="'tab-2'">
           <recviz :clientId="clientId"></recviz>
         </v-tab-item>
+        <!-- история сделок -->
         <v-tab-item :transition="false" :reverse-transition="false" :value="'tab-3'">
           <v-card flat v-if="dealsHistory">
             <v-card-title>История сделок клиента</v-card-title>
@@ -353,6 +358,7 @@ export default {
   },
 
   computed: {
+    // вычисление ширины браулера в зависимости от ширина окна
     windowWidthProc() {
       let w = this.windowWidth;
       if (w < 700) {
@@ -407,12 +413,14 @@ export default {
       await this.$store.dispatch("contacts/getContacts", this.clientId);
     },
     clickOutside() {
+      // для закрытия браулера при клике вне его
       this.$store.state.showClient = false;
     },
     onResize() {
       this.windowWidth = window.innerWidth;
     },
     follow(deal_id) {
+      // переход на сделку
       this.$router.push("/deal/" + deal_id);
     },
     async loadRecviz() {
@@ -422,6 +430,7 @@ export default {
       await this.$store.dispatch("deals/getClientDeals", this.clientId);
     },
     changeFIO() {
+      // если в контактах у первого элемента не задано ФИО, заполняем его из названия клиента
       if (this.contacts.length === 0) {
         this.newContact.name = this.clientData.name;
       }

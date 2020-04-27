@@ -1,9 +1,10 @@
 <template>
+  <!-- окно подтверждения исходящего звонка клиенту -->
   <div style="display: inline;">
     <v-btn fab x-small outlined class="mx-1 my-0" @click="dialog=true" style="position:relative;">
       <v-icon>mdi-phone-forward-outline</v-icon>
     </v-btn>
-    
+
     <v-dialog v-model="dialog" max-width="290">
       <v-card>
         <v-card-title class="headline">Позвонить?</v-card-title>
@@ -12,8 +13,11 @@
           Сайт: {{site_sid}}
           <br />
           Номер: {{number}}
-          <br>
-          <u>Внутренний номер: <big>{{insade_phone}}</big></u>
+          <br />
+          <u>
+            Внутренний номер:
+            <big>{{insade_phone}}</big>
+          </u>
         </v-card-text>
 
         <v-card-actions>
@@ -36,7 +40,17 @@
 <script>
 export default {
   name: "calling",
-  props: ["number", "site_sid"],
+  props: {
+    number: {
+      type: String,
+      required: true
+    },
+    site_sid: {
+      type: String,
+      required: true
+    }
+  },
+
   data() {
     return {
       snackbar: false,
