@@ -1,8 +1,8 @@
 # Simple CRM on Vue.js
 
-```
+
 Demo: http://crm.stabmart.tw1.ru/deals
-```
+
 
 ## Project setup
 ```
