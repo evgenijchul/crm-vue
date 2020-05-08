@@ -3,10 +3,13 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-import Vuetify from 'vuetify/lib'
-import 'vuetify/dist/vuetify.min.css'
+import Vuetify from './plugins/vuetify'
+
+
+
+
 import router from './router'
-import store from './store'
+import store from './store/index'
 
 import dateFilter from '@/filter/date.filter'
 
@@ -22,15 +25,15 @@ Vue.use(wysiwyg, {
 
 import axios from 'axios'
 
-store.state.url_api = process.env.NODE_ENV === 'production' ? 'http://crm.stabmart.tw1.ru/' : 'http://crm.stabmart.tw1.ru/';
-store.state.dev = process.env.NODE_ENV === 'production' ? false : true;
-axios.defaults.baseURL = store.state.url_api + '/api/v1';
+// store.state.urlApi = process.env.NODE_ENV === 'production' ? 'http://192.168.1.104' : 'http://192.168.1.16';
+// store.state.dev = process.env.NODE_ENV === 'production' ? false : true;
+// axios.defaults.baseURL = store.state.urlApi + '/api/v1';
 
 
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-
+Vue.config.performance = process.env.NODE_ENV !== 'production';
 
 // работа с токеном
 const token = localStorage.getItem('token')
@@ -41,14 +44,16 @@ if (token) {
 
 Vue.use(Vuelidate)
 
-Vue.use(Vuetify)
+// import calling from "@/components/app/calling";
+// Vue.component('calling', calling)
+
 Vue.filter('date', dateFilter)
 
 Vue.filter('toCurrency', function (value) {
   if (typeof value !== "number") {
     return value;
   }
-  var formatter = new Intl.NumberFormat('ru-RU', {
+  const formatter = new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
     minimumFractionDigits: 2
@@ -65,8 +70,9 @@ Vue.use(VueProgressBar, {
 
 
 new Vue({
-  vuetify: new Vuetify(),
+  vuetify: Vuetify,
   router,
   store,
+  
   render: h => h(App)
 }).$mount('#app')

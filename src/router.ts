@@ -1,13 +1,11 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-Vue.use(Router)
+import VueRouter, {RouteConfig} from 'vue-router'
+Vue.use(VueRouter)
 import store from './store'
 
 
-let router =  new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
+
+const routes: Array<RouteConfig> =   [
     { 
       path: '/newdeal',      
       name: 'newDeal', 
@@ -15,7 +13,12 @@ let router =  new Router({
       component: () => import('./views/deal/create.vue')
     },
 
-    
+    {
+      path: '/',
+      name: 'home',
+      meta: { layout: 'MainLayout', Auth:true },
+      component: () => import('./views/home.vue')
+    },
     {
       path: '/deals',
       name: 'deals',
@@ -86,7 +89,7 @@ let router =  new Router({
       path: '/login',
       name: 'login',
       meta: { layout: 'EmptyLayout' },
-      component: () => import('./views/login.vue')
+      component: () => import('./views/Login.vue')
     },
     {
       path: '/calls',
@@ -100,13 +103,33 @@ let router =  new Router({
       meta: { layout: 'MainLayout', Auth:true },
       component: () => import('./views/phoneBook.vue')
     },
+    {
+      path: '/files',
+      name: 'files',
+      meta: { layout: 'MainLayout', Auth:true },
+      component: () => import('./views/files.vue')
+    },
+    {
+      path: '/files/:reg_id',
+      name: 'file',
+      meta: { layout: 'MainLayout' , Auth:true},
+      component: () => import('./views/file.vue')
+    }
+  ];
 
-  ]
+
+
+
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.Auth)) {
-   
+    console.log();
     if (store.getters["managers/isLoggedIn"]) {
       next()
       return
@@ -116,6 +139,5 @@ router.beforeEach((to, from, next) => {
     next() 
   }
 })
-
 
 export default router
